@@ -20,7 +20,6 @@ namespace ClientLogic
             Client.OnConnected += (sender, tcp) =>
             {
                 Console.WriteLine("Client successfuly connected!");
-                Client.Send(new Packet(BytesTransformation.TransformIt("Test String", "Test String2", 1337, true, 412.214, 4124u), "Some packet"));
             };
             Client.OnDisconnect += (sender, tcp) =>
             {
@@ -28,17 +27,12 @@ namespace ClientLogic
             };
             Client.OnError += (sender, error) =>
             {
-                Console.WriteLine($"{error.Message}\n{error.StackTrace}");
+                ClientEvents.Error?.Invoke($"{error.Message}\n{error.StackTrace}");
             };
             Client.DataReceived += (sender, msg) =>
             {
-                Console.WriteLine($"PacketType: {msg.GetPacket.PacketType}");
                 Client.PacketHandler(msg, false);
             };
-            if (!Client.Connect("127.0.0.1", 6124, TimeSpan.FromSeconds(15)))
-                Console.WriteLine("Connection aborted. Timeout!");
-            Console.ReadLine();
-            Task.Delay(-1).Wait();
         }
     }
 }

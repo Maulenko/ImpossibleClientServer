@@ -10,12 +10,7 @@ namespace ClientLogic
     {
         public ClientLogic()
         {
-            ClientEvents.Debug?.Invoke("DEBUG");
-            ClientEvents.Info?.Invoke("INFO");
-            ClientEvents.Warn?.Invoke("WARN");
-            ClientEvents.Error?.Invoke("ERROR");
-            ClientEvents.Success?.Invoke("SUCCESS");
-            ClientEvents.Custom?.Invoke("CUSTOM", "CUSTOM", "#CA35D3");
+
         }
     }
 }

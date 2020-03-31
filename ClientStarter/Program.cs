@@ -17,13 +17,13 @@ namespace ClientStarter
         }
         static void Init()
         {
+            logic = new ClientLogic.ClientLogic();
             ClientEvents.Info += ConsoleIO.Info;
             ClientEvents.Error += ConsoleIO.Error;
             ClientEvents.Debug += ConsoleIO.Debug;
             ClientEvents.Success += ConsoleIO.Success;
             ClientEvents.Warn += ConsoleIO.Warn;
             ClientEvents.Custom += ConsoleIO.Custom;
-            logic = new ClientLogic.ClientLogic();
         }
     }
 }
