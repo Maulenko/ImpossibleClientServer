@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServerLogic
+namespace ClientLogic
 {
-    public static class ServerEvents
+    public static class ClientEvents
     {
         /// <summary>
         /// Begin, msg, color

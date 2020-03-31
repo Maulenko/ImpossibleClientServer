@@ -11,13 +11,16 @@ namespace ServerLogic
     {
         public MainLogic()
         {
-
-        }
-        public void StartServer()
+            ServerEvents.Debug?.Invoke("DEBUG");
+            ServerEvents.Info?.Invoke("INFO");
+            ServerEvents.Warn?.Invoke("WARN");
+            ServerEvents.Error?.Invoke("ERROR");
+            ServerEvents.Success?.Invoke("SUCCESS");
+            ServerEvents.Custom?.Invoke("CUSTOM", "CUSTOM", "#CA35D3");
+        }        
+        public void ServerStart()
         {
-            ServerEvents.Info?.Invoke("Я СОСАЛ ХУЙ!!!");
 
         }
-        
     }
 }

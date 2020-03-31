@@ -13,13 +13,19 @@ namespace ServerStarter
         static void Main(string[] args)
         {
             Initialize();
-            LOGIC.StartServer();
+            LOGIC.ServerStart();
             Console.Read();
         }
         static void Initialize()
         {
-            LOGIC = new MainLogic();
             ServerEvents.Info += ConsoleIO.Info;
+            ServerEvents.Success += ConsoleIO.Success;
+            ServerEvents.Warn += ConsoleIO.Warn;
+            ServerEvents.Error += ConsoleIO.Error;
+            ServerEvents.Debug += ConsoleIO.Debug;
+            ServerEvents.Custom += ConsoleIO.Custom;
+
+            LOGIC = new MainLogic();
         }
     }
 }

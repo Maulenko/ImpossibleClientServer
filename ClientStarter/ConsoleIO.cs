@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Console = Colorful.Console;
 
-namespace ServerStarter
+namespace ClientStarter
 {
     public static class ConsoleIO
     {
