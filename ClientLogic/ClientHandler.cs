@@ -19,10 +19,7 @@ namespace ClientLogic
         public void EventLoading()
         {
             Client.OnConnected += EventConnected;
-            Client.OnDisconnect += (sender, tcp) =>
-            {
-                Console.WriteLine("Client disconnected!");
-            };
+            Client.OnDisconnect += EventDisconnected;
             Client.OnError += (sender, error) =>
             {
                 ClientEvents.Error?.Invoke($"{error.Message}\n{error.StackTrace}");
@@ -32,10 +29,15 @@ namespace ClientLogic
                 Client.PacketHandler(msg, false);
             };
         }
+        
+        private void EventDisconnected(object sender, Socket e)
+        {
+            ClientEvents.Warn?.Invoke("Client disconnected");
+        }
 
         private void EventConnected(object sender, Socket e)
         {
-            ClientEvents.Success("Client connected");
+            ClientEvents.Success?.Invoke("Client connected");
         }
     }
 }
