@@ -12,10 +12,9 @@ namespace ClientLogic
     public class ClientHandler
     {
         public EasyTcpClient Client;
-        public ClientHandler()
-        {
-            Client = new EasyTcpClient(System.Reflection.Assembly.GetExecutingAssembly());
-        }
+        public string IP { get; }
+        public ushort Port { get; }
+        public ClientHandler(string ip, ushort port) => (Client, IP, Port) = (new EasyTcpClient(System.Reflection.Assembly.GetExecutingAssembly()), ip, port);
         public void EventLoading()
         {
             Client.OnConnected += EventConnected;
@@ -28,6 +27,11 @@ namespace ClientLogic
             {
                 Client.PacketHandler(msg, false);
             };
+        }
+
+        public void TryConnect(int maxCount = 5)
+        {
+
         }
         
         private void EventDisconnected(object sender, Socket e)
