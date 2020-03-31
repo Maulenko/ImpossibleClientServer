@@ -11,7 +11,7 @@ namespace ClientLogic
         public ClientLogic()
         {
             ClientEvents.Debug?.Invoke("DEBUG");
-            ClientEvents.Info?.Invoke("INFOqwe");
+            ClientEvents.Info?.Invoke("INFO");
             ClientEvents.Warn?.Invoke("WARN");
             ClientEvents.Error?.Invoke("ERROR");
             ClientEvents.Success?.Invoke("SUCCESS");
