@@ -13,7 +13,8 @@ namespace ClientStarter
         static void Main(string[] args)
         {
             Init();
-            Console.Read();
+            logic.Handler.TryConnect(5);
+            Task.Delay(-1).Wait();
         }
         static void Init()
         {

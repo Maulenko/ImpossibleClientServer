@@ -31,7 +31,25 @@ namespace ClientLogic
 
         public void TryConnect(int maxCount = 5)
         {
-
+            Task TaskConnect = new Task(() =>
+            {
+                int count = 0;
+                while (!Client.IsConnected && !(count >= maxCount))
+                {
+                    Client.Connect(IP, Port, TimeSpan.FromSeconds(5));
+                    ClientEvents.Info?.Invoke($"Connecting {count}/{maxCount}");
+                    Task.Delay(100).Wait();
+                    count++;
+                }
+            });
+            TaskConnect.ContinueWith((task) =>
+            {
+                if (!Client.IsConnected)
+                {
+                    ClientEvents.Error?.Invoke("Server no response.");
+                }
+            });
+            TaskConnect.Start();
         }
         
         private void EventDisconnected(object sender, Socket e)
