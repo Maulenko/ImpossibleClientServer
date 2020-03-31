@@ -33,9 +33,9 @@ namespace ClientLogic
         {
             Task TaskConnect = new Task(() =>
             {
-                int count = 0;
-                while (!Client.IsConnected && !(count >= maxCount))
-                {
+                int count = 1;
+                while (!Client.IsConnected && count != maxCount+1)
+                { 
                     Client.Connect(IP, Port, TimeSpan.FromSeconds(5));
                     ClientEvents.Info?.Invoke($"Connecting {count}/{maxCount}");
                     Task.Delay(100).Wait();
