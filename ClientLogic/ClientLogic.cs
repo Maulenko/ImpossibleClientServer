@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientStarter
+namespace ClientLogic
 {
-    class Program
+    class ClientLogic
     {
-        static void Main(string[] args)
-        {
 
-        }
     }
 }
