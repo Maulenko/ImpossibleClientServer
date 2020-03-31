@@ -3,6 +3,7 @@ using EasyTcp.Common.Packets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,12 +16,9 @@ namespace ClientLogic
         {
             Client = new EasyTcpClient(System.Reflection.Assembly.GetExecutingAssembly());
         }
-        public void Connect()
+        public void EventLoading()
         {
-            Client.OnConnected += (sender, tcp) =>
-            {
-                Console.WriteLine("Client successfuly connected!");
-            };
+            Client.OnConnected += EventConnected;
             Client.OnDisconnect += (sender, tcp) =>
             {
                 Console.WriteLine("Client disconnected!");
@@ -33,6 +31,11 @@ namespace ClientLogic
             {
                 Client.PacketHandler(msg, false);
             };
+        }
+
+        private void EventConnected(object sender, Socket e)
+        {
+            ClientEvents.Success("Client connected");
         }
     }
 }
