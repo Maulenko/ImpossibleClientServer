@@ -9,16 +9,14 @@ namespace ClientStarter
 {
     class Program
     {
-        public static ClientLogic.ClientLogic logic;
         static void Main(string[] args)
         {
             Init();
-            logic.Handler.TryConnect(5);
+            ClientLogic.ClientLogic.GetInstance.Handler.TryConnect(1);
             Task.Delay(-1).Wait();
         }
         static void Init()
         {
-            logic = new ClientLogic.ClientLogic();
             ClientEvents.Info += ConsoleIO.Info;
             ClientEvents.Error += ConsoleIO.Error;
             ClientEvents.Debug += ConsoleIO.Debug;

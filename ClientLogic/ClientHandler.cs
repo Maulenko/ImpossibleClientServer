@@ -48,6 +48,7 @@ namespace ClientLogic
                 {
                     ClientEvents.Error?.Invoke("Server no response.");
                 }
+                ClientLogic.GetInstance.CommandListener();
             });
             TaskConnect.Start();
         }

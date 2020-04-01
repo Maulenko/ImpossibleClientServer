@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientLogic.Account.Modules
+namespace SystemCommands
 {
-    public class SignIn : IModule
+    public class Class1
     {
     }
 }

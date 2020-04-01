@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D4863DC9-0C09-454F-85A6-4B6353A52523}</ProjectGuid>
+    <ProjectGuid>{3F3ADC7E-755B-4098-AB4B-B99ADD5043A8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClientLogic</RootNamespace>
-    <AssemblyName>ClientLogic</AssemblyName>
+    <RootNamespace>CommandsModule</RootNamespace>
+    <AssemblyName>CommandsModule</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Compiled\Client\modules\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,7 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,30 +41,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientEvents.cs" />
-    <Compile Include="ClientHandler.cs" />
-    <Compile Include="ClientLogic.cs" />
+    <Compile Include="Commands\Auth.cs" />
+    <Compile Include="Commands\System.cs" />
+    <Compile Include="Meta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AwwareCmds\AwwareCmds\AwwareCmds.csproj">
-      <Project>{760EB7C7-09AA-4413-AB4D-08E11793D556}</Project>
+      <Project>{760eb7c7-09aa-4413-ab4d-08e11793d556}</Project>
       <Name>AwwareCmds</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EasyTcp\EasyTcp.Client\EasyTcp.Client.csproj">
-      <Project>{C7C02741-8411-4AFF-BBA8-10852E1E7489}</Project>
-      <Name>EasyTcp.Client</Name>
+    <ProjectReference Include="..\ClientLogic\ClientLogic.csproj">
+      <Project>{d4863dc9-0c09-454f-85a6-4b6353a52523}</Project>
+      <Name>ClientLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EasyTcp\EasyTcp.Common\EasyTcp.Common.csproj">
-      <Project>{D2C6C24D-0B7F-445A-8572-C88380DE278D}</Project>
-      <Name>EasyTcp.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Account\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetPath)" "$(TargetDir)CommandsModule.module"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

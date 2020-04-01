@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientLogic.Account
+namespace CommandsModule.Commands
 {
-    class Authorization
+    public class Auth
     {
     }
 }
