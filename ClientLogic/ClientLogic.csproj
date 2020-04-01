@@ -42,6 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\Authorization.cs" />
+    <Compile Include="Account\Modules\IModule.cs" />
+    <Compile Include="Account\Modules\SignIn.cs" />
+    <Compile Include="Account\Modules\SignUp.cs" />
     <Compile Include="ClientEvents.cs" />
     <Compile Include="ClientHandler.cs" />
     <Compile Include="ClientLogic.cs" />
