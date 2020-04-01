@@ -1,12 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServerLogic.Data
 {
-    class User
+    [Serializable]
+    public class User
     {
+        public long Id;
+        public string Login;
+        public string Password;
+        public UserInfo UserInfo;
+        public User(string login, string password) : this() => (this.Login, this.Password) = (login, password);
+        public User() { UserInfo = new UserInfo(); }
+
     }
 }

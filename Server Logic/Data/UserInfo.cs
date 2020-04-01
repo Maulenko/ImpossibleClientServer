@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServerLogic.Data
 {
-    class UserInfo
+    public class UserInfo
     {
+        public string Name { get; internal set; } = "Unclown";
+        public string Surname { get; internal set; } = "Unclown";
+        public UserGender Gender { get; internal set; } = UserGender.Unclown;
+        public DateTime RegistrationDate { get; internal set; } = DateTime.MinValue;
+        public DateTime LastJoin { get; internal set; } = DateTime.MinValue;
     }
 }
