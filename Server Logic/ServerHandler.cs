@@ -17,29 +17,27 @@ namespace ServerLogic
         public void ServerStart()
         {
             ServerEvents.Info?.Invoke("Server starting...");
-            EasyTcpServer server = new EasyTcpServer(System.Reflection.Assembly.GetExecutingAssembly());
-            server.OnServerStarted += (sender, s) =>
+            Server.OnServerStarted += (sender, s) =>
             {
                 ServerEvents.Info?.Invoke("Server started!");
             };
-            server.ClientConnected += (sender, client) =>
+            Server.ClientConnected += (sender, client) =>
             {
                 ServerEvents.Info?.Invoke($"Client [{client.RemoteEndPoint.ToString()}] connected!");
             };
-            server.ClientDisconnected += (sender, client) =>
+            Server.ClientDisconnected += (sender, client) =>
             {
                 ServerEvents.Error?.Invoke($"Client [{client.RemoteEndPoint.ToString()}] disconnected!");
             };
-            server.DataReceived += (sender, msg) =>
+            Server.DataReceived += (sender, msg) =>
             {
-                Console.WriteLine($"PacketType: {msg.GetPacket.PacketType}");
-                server.PacketHandler(msg, false);
+                Server.PacketHandler(msg, false);
             };
-            server.OnError += (sender, ex) =>
+            Server.OnError += (sender, ex) =>
             {
                 Console.WriteLine($"{ex.Message}\n{ex.StackTrace}");
             };
-            server.Start("127.0.0.1", 6124, 10);
+            Server.Start("127.0.0.1", 6124, 10);
             Task.Delay(-1).Wait();
         }
     }
