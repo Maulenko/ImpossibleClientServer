@@ -10,15 +10,15 @@ namespace CommandsModule.Commands
 {
     public class Auth : ICMD
     {
-        public string Name => "";
+        public string Name => "Auth";
 
-        public string Cmd => "";
+        public string Cmd => "auth";
 
-        public string CmdAbbr => "";
+        public string CmdAbbr => "a";
 
-        public string Desc => "";
+        public string Desc => "Authorization";
 
-        public string Syntax => "";
+        public string Syntax => "null";
 
         public List<SubInfo> Subcommands => new List<SubInfo>()
         {
