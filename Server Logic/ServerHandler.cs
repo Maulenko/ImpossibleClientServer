@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using EasyTcp.Server;
@@ -17,18 +18,9 @@ namespace ServerLogic
         public void ServerStart()
         {
             ServerEvents.Info?.Invoke("Server starting...");
-            Server.OnServerStarted += (sender, s) =>
-            {
-                ServerEvents.Info?.Invoke("Server started!");
-            };
-            Server.ClientConnected += (sender, client) =>
-            {
-                ServerEvents.Info?.Invoke($"Client [{client.RemoteEndPoint.ToString()}] connected!");
-            };
-            Server.ClientDisconnected += (sender, client) =>
-            {
-                ServerEvents.Error?.Invoke($"Client [{client.RemoteEndPoint.ToString()}] disconnected!");
-            };
+            Server.OnServerStarted += OnServerStarted;
+            Server.ClientConnected += OnClientConnected;
+            Server.ClientDisconnected += OnClientDisconnected;
             Server.DataReceived += (sender, msg) =>
             {
                 Server.PacketHandler(msg, false);
@@ -37,8 +29,22 @@ namespace ServerLogic
             {
                 Console.WriteLine($"{ex.Message}\n{ex.StackTrace}");
             };
-            Server.Start("127.0.0.1", 6124, 10);
-            Task.Delay(-1).Wait();
+            Server.Start("127.0.0.1", 6124, 99999);
+        }
+
+        private void OnServerStarted(object sender, Socket e)
+        {
+            ServerEvents.Success?.Invoke("Server started!");
+        }
+
+        private void OnClientDisconnected(object sender, Socket e)
+        {
+            ServerEvents.Error?.Invoke($"Client [{e.RemoteEndPoint.ToString()}] disconnected!");
+        }
+
+        private void OnClientConnected(object sender, Socket e)
+        {
+            ServerEvents.Info?.Invoke($"Client [{e.RemoteEndPoint.ToString()}] connected!");
         }
     }
 }
