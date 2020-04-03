@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -35,7 +36,7 @@ namespace AwwareCmds
             foreach (var asm in System.IO.Directory.GetFiles(ModulesFolder, "*.module"))
                 MODController.AttachModule(MODController.GenerateModule(Assembly.Load(File.ReadAllBytes(asm))));
         }
-        public void CommandHandler(string cmd)
+        public void CommandHandler(string cmd, Socket client)
         {
             try
             {
@@ -50,9 +51,12 @@ namespace AwwareCmds
 
                         ArgsControl.CommandDist(cmd);
 
+                        if (!client.Connected)
+                            return;
+
                         Task execute = new Task(() =>
                         {
-                            command.C_Execute(this, ArgsControl);
+                            command.C_Execute(this, ArgsControl, client);
                         });
 
                         AEvents.InvokeAction("before");
@@ -60,7 +64,7 @@ namespace AwwareCmds
                         {
                             Task.Factory.StartNew(() =>
                             {
-                                while (execute.Status == TaskStatus.Running)
+                                while (execute.Status == TaskStatus.Running && client.Connected)
                                 {
                                     if (myStopwatch.ElapsedMilliseconds > COMMANDTIMEOUT)
                                     {
@@ -74,7 +78,7 @@ namespace AwwareCmds
                         execute.ContinueWith((task) =>
                         {
                             myStopwatch.Stop();
-                            AEvents.InvokeAction("ended");
+                            AEvents.InvokeAction("ended", client);
 
                             if (GarbageCollect)
                                 GC.Collect();

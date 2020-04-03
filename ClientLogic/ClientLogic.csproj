@@ -46,6 +46,8 @@
     <Compile Include="ClientHandler.cs" />
     <Compile Include="ClientLogic.cs" />
     <Compile Include="Packet\AuthPackets.cs" />
+    <Compile Include="Packet\LockReadCommand.cs" />
+    <Compile Include="Packet\OutputPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@ using AwwareCmds.Arguments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
@@ -25,16 +26,16 @@ namespace CommandsModule.Commands
 
         };
 
-        public void C_Execute(Executer exe, ArgsController args)
+        public void C_Execute(Executer exe, ArgsController args, Socket client)
         {
-            ClientEvents.Info?.Invoke("System execute!");
+            ServerLogic.ServerEvents.Info?.Invoke("System execute!");
             Thread.Sleep(5000);
-            ClientEvents.Info?.Invoke("System execute!!!");
+            ServerLogic.ServerEvents.Info?.Invoke("System execute!!!");
         }
 
         public void C_Init(Executer exe)
         {
-            ClientEvents.Info?.Invoke("System init!");
+            ServerLogic.ServerEvents.Info?.Invoke("System init!");
         }
     }
 }

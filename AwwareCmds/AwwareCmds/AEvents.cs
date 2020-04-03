@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,7 +20,7 @@ namespace AwwareCmds
         }
         #region Events
         //Events
-        public static event Action OnCommandEnded;
+        public static event Action<Socket> OnCommandEnded;
 
         public static event Action<Task> OnCommandSleep;
 
@@ -44,7 +45,7 @@ namespace AwwareCmds
                     ExitApplication?.Invoke();
                     break;
                 case "ended":
-                    OnCommandEnded?.Invoke();
+                    OnCommandEnded?.Invoke(args[0] as Socket);
                     break;
                 case "sleep":
                     OnCommandSleep?.Invoke((Task)args[0]);

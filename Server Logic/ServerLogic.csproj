@@ -47,11 +47,16 @@
     <Compile Include="Data\UserInfo.cs" />
     <Compile Include="MainLogic.cs" />
     <Compile Include="Packets\AuthPackets.cs" />
+    <Compile Include="Packets\CommandPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerEvents.cs" />
     <Compile Include="ServerHandler.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AwwareCmds\AwwareCmds\AwwareCmds.csproj">
+      <Project>{760eb7c7-09aa-4413-ab4d-08e11793d556}</Project>
+      <Name>AwwareCmds</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EasyTcp\EasyTcp.Common\EasyTcp.Common.csproj">
       <Project>{d2c6c24d-0b7f-445a-8572-c88380de278d}</Project>
       <Name>EasyTcp.Common</Name>

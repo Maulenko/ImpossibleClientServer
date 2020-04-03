@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net.Sockets;
 
 namespace AwwareCmds
 {
@@ -11,6 +12,6 @@ namespace AwwareCmds
         string Syntax { get; }
         List<SubInfo> Subcommands { get; }
         void C_Init(Executer exe);
-        void C_Execute(Executer exe, AwwareCmds.Arguments.ArgsController args);
+        void C_Execute(Executer exe, AwwareCmds.Arguments.ArgsController args, Socket socket);
     }
 }

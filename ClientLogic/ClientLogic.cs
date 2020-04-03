@@ -1,4 +1,5 @@
 ﻿using AwwareCmds;
+using EasyTcp.Common.Packets;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,15 +15,13 @@ namespace ClientLogic
     {
         public ClientHandler Handler;
         private static readonly ClientLogic Instance = new ClientLogic();
-        public Executer Exec;
-        public bool LockReadLine = false;
+        public bool LockReadLine { get; set; } = false;
         private ClientLogic()
         {
             Handler = new ClientHandler("127.0.0.1", 6124);
-            Exec = new Executer(true, "modules");
-            Exec.AttachModulesFromFolder();
-            AEvents.CommandBeforeStart += () => LockReadLine = true;
-            AEvents.OnCommandEnded += () => LockReadLine = false;
+            Handler.EventLoading();
+            //AEvents.CommandBeforeStart += () => LockReadLine = true;
+            //AEvents.OnCommandEnded += () => LockReadLine = false;
         }
         public void CommandListener()
         {
@@ -31,7 +30,12 @@ namespace ClientLogic
                 if (LockReadLine)
                     continue;
                 Console.Write("> ");
-                Exec.CommandHandler(Console.ReadLine());
+                string cmd = Console.ReadLine();
+                if (!string.IsNullOrEmpty(cmd))
+                {
+                    Handler.Client.Send(BytesCompress.CompressPacket(BytesTransformation.TransformIt(cmd), "CPacket"));
+                    LockReadLine = true;
+                }
                 Thread.Sleep(50);
             }
         }
