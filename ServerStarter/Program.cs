@@ -11,6 +11,7 @@ namespace ServerStarter
     {
         static void Main(string[] args)
         {
+            Console.Title = "ImpServer v1.0";
             Initialize();
             MainLogic.GetInstance.ServerStart();
             Task.Delay(-1).Wait();

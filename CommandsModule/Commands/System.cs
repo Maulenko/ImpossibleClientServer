@@ -29,6 +29,7 @@ namespace CommandsModule.Commands
         public void C_Execute(Executer exe, ArgsController args, Socket client)
         {
             ServerLogic.ServerEvents.Info?.Invoke("System execute!");
+            ServerLogic.MainLogic.GetInstance.SendMessage(ServerLogic.OClient.Info, "SYSTEM EXECUTED!", client);
             Thread.Sleep(5000);
             ServerLogic.ServerEvents.Info?.Invoke("System execute!!!");
         }

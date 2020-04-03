@@ -11,6 +11,7 @@ namespace ClientStarter
     {
         static void Main(string[] args)
         {
+            Console.Title = "ImpClient v1.0";
             Init();
             ClientLogic.ClientLogic.GetInstance.Handler.TryConnect(1);
             Task.Delay(-1).Wait();

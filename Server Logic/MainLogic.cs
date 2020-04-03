@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using AwwareCmds;
@@ -30,5 +31,6 @@ namespace ServerLogic
             Handler.ServerStart();
         }
         public static MainLogic GetInstance { get { return Instance; } }
+        public void SendMessage(OClient msgType, string msg, Socket client) => Handler.Server.Send(client, BytesCompress.CompressPacket(BytesTransformation.TransformIt((int)msgType, msg), "OPacket"));
     }
 }

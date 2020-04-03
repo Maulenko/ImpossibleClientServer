@@ -46,6 +46,7 @@
     <Compile Include="Data\UserGender.cs" />
     <Compile Include="Data\UserInfo.cs" />
     <Compile Include="MainLogic.cs" />
+    <Compile Include="OClient.cs" />
     <Compile Include="Packets\AuthPackets.cs" />
     <Compile Include="Packets\CommandPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

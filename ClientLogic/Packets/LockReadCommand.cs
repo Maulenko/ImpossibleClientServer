@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientLogic.Packet
+namespace ClientLogic.Packets
 {
     public class LockReadCommand : IClientPacket
     {
