@@ -34,7 +34,7 @@ namespace CommandsModule.Commands
             }
             if (args.SubCmds.IsSubcmd(0, "login"))
             {
-
+                string login = string.IsNullOrEmpty(args.StrArgs[0]) ? throw new ArgumentNullException("login") : args.StrArgs[0];
             }
             else if(args.SubCmds.IsSubcmd(0, "register") || args.SubCmds.IsSubcmd(0, "reg"))
             {
