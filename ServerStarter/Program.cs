@@ -9,16 +9,14 @@ namespace ServerStarter
 {
     class Program
     {
-        public static MainLogic LOGIC;
         static void Main(string[] args)
         {
             Initialize();
-            LOGIC.ServerStart();
-            Console.Read();
+            MainLogic.GetInstance.ServerStart();
+            Task.Delay(-1).Wait();
         }
         static void Initialize()
         {
-            LOGIC = new MainLogic();
             ServerEvents.Info += ConsoleIO.Info;
             ServerEvents.Success += ConsoleIO.Success;
             ServerEvents.Warn += ConsoleIO.Warn;

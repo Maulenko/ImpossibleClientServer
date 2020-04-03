@@ -9,13 +9,16 @@ namespace ServerLogic
 {
     public class MainLogic
     {
-        public MainLogic()
+        public ServerHandler Handler;
+        private static readonly MainLogic Instance = new MainLogic();
+        private MainLogic()
         {
-
+            Handler = new ServerHandler();
         }        
         public void ServerStart()
         {
-
+            Handler.ServerStart();
         }
+        public static MainLogic GetInstance { get { return Instance; } }
     }
 }

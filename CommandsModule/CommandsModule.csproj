@@ -59,6 +59,10 @@
       <Project>{C7C02741-8411-4AFF-BBA8-10852E1E7489}</Project>
       <Name>EasyTcp.Client</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EasyTcp\EasyTcp.Common\EasyTcp.Common.csproj">
+      <Project>{D2C6C24D-0B7F-445A-8572-C88380DE278D}</Project>
+      <Name>EasyTcp.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

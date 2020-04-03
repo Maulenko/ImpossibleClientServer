@@ -1,5 +1,6 @@
 ﻿using AwwareCmds;
 using AwwareCmds.Arguments;
+using EasyTcp.Common.Packets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace CommandsModule.Commands
             {
                 string login = string.IsNullOrEmpty(args.StrArgs[0]) ? throw new ArgumentNullException("login") : args.StrArgs[0];
                 string password = string.IsNullOrEmpty(args.StrArgs[1]) ? throw new ArgumentNullException("password") : args.StrArgs[1];
-
+                ClientLogic.ClientLogic.GetInstance.Handler.Client.Send(BytesCompress.CompressPacket(BytesTransformation.TransformIt(login, password), "Auth"));
             }
             else if(args.SubCmds.IsSubcmd(0, "register") || args.SubCmds.IsSubcmd(0, "reg"))
             {
