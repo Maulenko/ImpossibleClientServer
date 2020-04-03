@@ -17,7 +17,7 @@ namespace ServerLogic.Packets
         {
             Console.WriteLine($"Received packet!");
             Packet pack = msg.GetPacket;
-            List<object> Objects = BytesTransformation.TransformToObject(pack.RawData, typeof(string), typeof(string));
+            List<object> Objects = BytesTransformation.TransformToObject(BytesCompress.Decompress(pack.RawData), typeof(string), typeof(string));
             Console.WriteLine($"LOGIN: {Objects[0].ToString()} | PASSWORD: {Objects[1].ToString()}");
         }
     }
